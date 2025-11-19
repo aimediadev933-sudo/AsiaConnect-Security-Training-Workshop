@@ -108,6 +108,7 @@
             min-height: 50vh;
             display: flex;
             align-items: center;
+            justify-content: center;
             width: 100%;
         }
 
@@ -133,7 +134,9 @@
             position: relative;
             z-index: 2;
             width: 100%;
+            max-width: 1200px;
             padding: 0 20px;
+            margin: 0 auto;
         }
 
         .hero h1 {
@@ -159,7 +162,7 @@
             box-shadow: 0 8px 25px rgba(242, 140, 40, 0.2);
             margin: 2rem auto;
             text-align: left;
-            max-width: 90%;
+            max-width: 500px;
         }
 
         .event-details h3 {
@@ -179,10 +182,11 @@
         .stats {
             background: white;
             padding: 2rem;
-            margin: 2rem 0;
+            margin: 2rem auto;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             width: 100%;
+            max-width: 1200px;
         }
 
         .stats-grid {
@@ -220,8 +224,9 @@
         /* Content Sections */
         .section {
             padding: 2rem 0;
-            margin: 2rem 0;
+            margin: 2rem auto;
             width: 100%;
+            max-width: 1200px;
         }
 
         .section h2 {
@@ -250,6 +255,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             margin-top: 2rem;
+            justify-items: center;
         }
 
         .card {
@@ -259,6 +265,8 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             border-left: 5px solid #F28C28;
+            width: 100%;
+            max-width: 100%;
         }
 
         .card:hover {
@@ -270,17 +278,20 @@
             color: #F28C28;
             margin-bottom: 1rem;
             font-size: 1.2rem;
+            text-align: left;
         }
 
         .card p {
             font-size: 0.95rem;
             line-height: 1.7;
             color: #1D1D1B;
+            text-align: left;
         }
 
         .card ul {
             list-style: none;
             padding-left: 0;
+            text-align: left;
         }
 
         .card li {
@@ -298,6 +309,18 @@
             font-weight: bold;
         }
 
+        /* Single card in Overview section */
+        .single-card-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .single-card-container .card {
+            max-width: 100%;
+        }
+
         /* Partners Section */
         .partners {
             background: white;
@@ -312,6 +335,7 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
             margin-top: 2rem;
+            justify-items: stretch;
         }
 
         .partner-item {
@@ -348,22 +372,25 @@
 
         .outcome-item {
             background: white;
-            margin: 1rem 0;
+            margin: 1rem auto;
             padding: 1.5rem;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border-left: 5px solid #E88C2D;
+            max-width: 100%;
         }
 
         .outcome-item h4 {
             color: #F28C28;
             margin-bottom: 0.5rem;
             font-size: 1.1rem;
+            text-align: left;
         }
 
         .outcome-item p {
             font-size: 0.95rem;
             line-height: 1.7;
+            text-align: left;
         }
 
         /* SDGs */
@@ -381,6 +408,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             margin-top: 2rem;
+            justify-items: center;
         }
 
         .sdg-item {
@@ -389,6 +417,8 @@
             padding: 1.5rem;
             border-radius: 15px;
             transition: transform 0.3s ease;
+            width: 100%;
+            max-width: 100%;
         }
 
         .sdg-item:hover {
@@ -534,6 +564,14 @@
             .section h2 {
                 font-size: 1.8rem;
             }
+
+            .section {
+                padding: 2rem 20px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
         }
 
         /* Mobile Styles - 480px and below */
@@ -581,8 +619,8 @@
             }
 
             .section {
-                padding: 1.5rem 0;
-                margin: 1.5rem 0;
+                padding: 1.5rem 15px;
+                margin: 1.5rem auto;
             }
 
             .section h2 {
@@ -696,16 +734,14 @@
     </header>
 
     <section class="hero fade-in">
-        <div class="container">
-            <div class="hero-content">
-                <h1>SecureAsi@</h1>
-                <p class="hero-subtitle">AsiaConnect Security Training Workshop</p>
-                <div class="event-details">
-                    <h3>Workshop Details</h3>
-                    <p><strong>📅 Date:</strong> October 23-25, 2017</p>
-                    <p><strong>📍 Location:</strong> Cyberjaya, Malaysia</p>
-                    <p><strong>🎯 Category:</strong> WP2 - 1st Call</p>
-                </div>
+        <div class="hero-content">
+            <h1>SecureAsi@</h1>
+            <p class="hero-subtitle">AsiaConnect Security Training Workshop</p>
+            <div class="event-details">
+                <h3>Workshop Details</h3>
+                <p><strong>📅 Date:</strong> October 23-25, 2017</p>
+                <p><strong>📍 Location:</strong> Cyberjaya, Malaysia</p>
+                <p><strong>🎯 Category:</strong> WP2 - 1st Call</p>
             </div>
         </div>
     </section>
@@ -733,19 +769,21 @@
 
     <section id="overview" class="section container">
         <h2>Project Overview</h2>
-        <div class="card">
-            <p>The SecureAsi@ Workshop strengthened cybersecurity capabilities of network engineers and administrators across AsiaConnect partner countries. Jointly organized by Universiti Sains Malaysia (USM), Malaysian Research and Education Network (MYREN), and University of Hamburg (UH), this intensive three-day training empowered participants to detect, manage, and mitigate cybersecurity threats in their National Research and Education Networks (NRENs).</p>
-        </div>
+        <div class="single-card-container">
+            <div class="card">
+                <p>The SecureAsi@ Workshop strengthened cybersecurity capabilities of network engineers and administrators across AsiaConnect partner countries. Jointly organized by Universiti Sains Malaysia (USM), Malaysian Research and Education Network (MYREN), and University of Hamburg (UH), this intensive three-day training empowered participants to detect, manage, and mitigate cybersecurity threats in their National Research and Education Networks (NRENs).</p>
+            </div>
 
-        <div class="card">
-            <h3>🎯 Project Objectives</h3>
-            <ul>
-                <li>Enhance cybersecurity knowledge and practical skills of NREN engineers</li>
-                <li>Introduce foundational cybersecurity concepts and threats</li>
-                <li>Provide exposure to IDS, honeypots, sandboxes, and penetration testing</li>
-                <li>Train in incident detection and response</li>
-                <li>Encourage collaboration and best practices sharing across NRENs</li>
-            </ul>
+            <div class="card">
+                <h3>🎯 Project Objectives</h3>
+                <ul>
+                    <li>Enhance cybersecurity knowledge and practical skills of NREN engineers</li>
+                    <li>Introduce foundational cybersecurity concepts and threats</li>
+                    <li>Provide exposure to IDS, honeypots, sandboxes, and penetration testing</li>
+                    <li>Train in incident detection and response</li>
+                    <li>Encourage collaboration and best practices sharing across NRENs</li>
+                </ul>
+            </div>
         </div>
     </section>
 
