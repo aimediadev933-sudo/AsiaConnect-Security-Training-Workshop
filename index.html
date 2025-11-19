@@ -34,6 +34,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: transform 0.3s ease;
         }
 
         nav {
@@ -491,17 +492,6 @@
             .sdg-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
-            /* Close button for mobile menu */
-            .nav-links::before {
-                content: '✕';
-                position: absolute;
-                top: 2rem;
-                right: 2rem;
-                font-size: 1.5rem;
-                color: white;
-                cursor: pointer;
-            }
         }
 
         @media (max-width: 480px) {
@@ -586,6 +576,12 @@
             .social-link:hover {
                 transform: none;
             }
+        }
+
+        /* Prevent animation during resize */
+        .resize-animation-stopper * {
+            animation: none !important;
+            transition: none !important;
         }
     </style>
 </head>
@@ -853,4 +849,21 @@
             if (scrollTop > lastScrollTop && scrollTop > 100) {
                 header.style.transform = 'translateY(-100%)';
             } else {
-                header.style.transform = 'translateY(
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Prevent transitions during resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            document.body.classList.add('resize-animation-stopper');
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                document.body.classList.remove('resize-animation-stopper');
+            }, 400);
+        });
+    </script>
+</body>
+</html>
