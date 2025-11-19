@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SecureAsi@ - AsiaConnect Security Training Workshop</title>
     <style>
         * {
@@ -11,21 +12,29 @@
             box-sizing: border-box;
         }
 
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background-color: #FCF5EC;
             color: #1D1D1B;
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* Enhanced Header with Mobile Menu */
+        /* Header Styles */
         header {
             background: linear-gradient(135deg, #F28C28, #E88C2D);
             color: white;
@@ -34,7 +43,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            transition: transform 0.3s ease;
+            width: 100%;
         }
 
         nav {
@@ -42,29 +51,31 @@
             justify-content: space-between;
             align-items: center;
             position: relative;
+            width: 100%;
         }
 
         .logo {
-            font-size: clamp(1.5rem, 4vw, 1.8rem);
+            font-size: 1.5rem;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             z-index: 1001;
+            white-space: nowrap;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
-            transition: all 0.3s ease;
+            align-items: center;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            transition: all 0.3s ease;
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-size: clamp(0.9rem, 2vw, 1rem);
+            transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
@@ -75,23 +86,29 @@
         .mobile-menu-toggle {
             display: none;
             background: none;
-            border: none;
+            border: 2px solid white;
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
-            z-index: 1001;
+            padding: 0.5rem;
+            border-radius: 5px;
+            width: 45px;
+            height: 45px;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Enhanced Hero Section */
+        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, rgba(242, 140, 40, 0.1), rgba(232, 140, 45, 0.15));
-            padding: clamp(2rem, 8vw, 4rem) 0;
+            padding: 3rem 0;
             text-align: center;
             position: relative;
             overflow: hidden;
-            min-height: 60vh;
+            min-height: 50vh;
             display: flex;
             align-items: center;
+            width: 100%;
         }
 
         .hero::before {
@@ -101,7 +118,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23F28C28" opacity="0.1"/></svg>') repeat;
+            background: radial-gradient(circle, rgba(242, 140, 40, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
             animation: float 20s infinite linear;
             z-index: 1;
         }
@@ -115,10 +133,11 @@
             position: relative;
             z-index: 2;
             width: 100%;
+            padding: 0 20px;
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 8vw, 4rem);
+            font-size: 2.5rem;
             margin-bottom: 1rem;
             color: #F28C28;
             font-weight: 700;
@@ -126,7 +145,7 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(1rem, 4vw, 1.3rem);
+            font-size: 1.2rem;
             color: #9F4B14;
             margin-bottom: 2rem;
             font-weight: 300;
@@ -135,42 +154,46 @@
         .event-details {
             display: inline-block;
             background: white;
-            padding: clamp(1rem, 3vw, 1.5rem) clamp(1.5rem, 4vw, 2rem);
+            padding: 1.5rem 2rem;
             border-radius: 15px;
             box-shadow: 0 8px 25px rgba(242, 140, 40, 0.2);
-            margin-bottom: 2rem;
+            margin: 2rem auto;
+            text-align: left;
             max-width: 90%;
         }
 
         .event-details h3 {
             color: #F28C28;
-            margin-bottom: 0.5rem;
-            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-align: center;
         }
 
         .event-details p {
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
-            margin-bottom: 0.3rem;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1D1D1B;
         }
 
-        /* Enhanced Stats Section */
+        /* Stats Section */
         .stats {
             background: white;
-            padding: clamp(2rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
+            padding: 2rem;
             margin: 2rem 0;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: clamp(1rem, 4vw, 2rem);
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
             text-align: center;
         }
 
         .stat-item {
-            padding: clamp(1rem, 3vw, 1.5rem);
+            padding: 1.5rem 1rem;
             border-radius: 15px;
             background: linear-gradient(135deg, #FCF5EC, #F28C28);
             transition: transform 0.3s ease;
@@ -181,40 +204,42 @@
         }
 
         .stat-number {
-            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            font-size: 2rem;
             font-weight: bold;
             color: #9F4B14;
             display: block;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
             color: #1D1D1B;
             font-weight: 500;
-            margin-top: 0.5rem;
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-size: 0.9rem;
         }
 
-        /* Enhanced Content Sections */
+        /* Content Sections */
         .section {
-            padding: clamp(2rem, 6vw, 3rem) 0;
+            padding: 2rem 0;
             margin: 2rem 0;
+            width: 100%;
         }
 
         .section h2 {
-            font-size: clamp(2rem, 6vw, 2.5rem);
+            font-size: 2rem;
             color: #F28C28;
             margin-bottom: 2rem;
             text-align: center;
             position: relative;
+            padding-bottom: 1rem;
         }
 
         .section h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: clamp(60px, 20vw, 100px);
+            width: 80px;
             height: 4px;
             background: linear-gradient(90deg, #F28C28, #E88C2D);
             border-radius: 2px;
@@ -222,14 +247,14 @@
 
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: clamp(1rem, 4vw, 2rem);
-            margin-top: 3rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .card {
             background: white;
-            padding: clamp(1.5rem, 4vw, 2rem);
+            padding: 1.5rem;
             border-radius: 15px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
@@ -244,12 +269,13 @@
         .card h3 {
             color: #F28C28;
             margin-bottom: 1rem;
-            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-size: 1.2rem;
         }
 
         .card p {
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-size: 0.95rem;
             line-height: 1.7;
+            color: #1D1D1B;
         }
 
         .card ul {
@@ -261,7 +287,7 @@
             padding: 0.5rem 0;
             position: relative;
             padding-left: 1.5rem;
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-size: 0.95rem;
         }
 
         .card li::before {
@@ -272,10 +298,10 @@
             font-weight: bold;
         }
 
-        /* Enhanced Partners Section */
+        /* Partners Section */
         .partners {
             background: white;
-            padding: clamp(2rem, 6vw, 3rem);
+            padding: 2rem;
             border-radius: 20px;
             margin: 2rem 0;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -283,14 +309,14 @@
 
         .partner-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: clamp(1rem, 3vw, 1.5rem);
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
         .partner-item {
             background: #FCF5EC;
-            padding: clamp(1rem, 3vw, 1.5rem);
+            padding: 1.5rem;
             border-radius: 10px;
             text-align: center;
             border: 2px solid #F28C28;
@@ -304,18 +330,18 @@
         }
 
         .partner-item h4 {
-            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
         }
 
         .partner-item p {
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-size: 0.9rem;
         }
 
-        /* Enhanced Outcomes */
+        /* Outcomes */
         .outcomes {
             background: linear-gradient(135deg, rgba(242, 140, 40, 0.05), rgba(232, 140, 45, 0.1));
-            padding: clamp(2rem, 6vw, 3rem);
+            padding: 2rem;
             border-radius: 20px;
             margin: 2rem 0;
         }
@@ -323,7 +349,7 @@
         .outcome-item {
             background: white;
             margin: 1rem 0;
-            padding: clamp(1rem, 3vw, 1.5rem);
+            padding: 1.5rem;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border-left: 5px solid #E88C2D;
@@ -332,18 +358,18 @@
         .outcome-item h4 {
             color: #F28C28;
             margin-bottom: 0.5rem;
-            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-size: 1.1rem;
         }
 
         .outcome-item p {
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-size: 0.95rem;
             line-height: 1.7;
         }
 
-        /* Enhanced SDGs */
+        /* SDGs */
         .sdgs {
             background: white;
-            padding: clamp(2rem, 6vw, 3rem);
+            padding: 2rem;
             border-radius: 20px;
             margin: 2rem 0;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -352,15 +378,15 @@
 
         .sdg-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: clamp(1rem, 3vw, 1.5rem);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
         .sdg-item {
             background: linear-gradient(135deg, #F28C28, #E88C2D);
             color: white;
-            padding: clamp(1rem, 3vw, 1.5rem);
+            padding: 1.5rem;
             border-radius: 15px;
             transition: transform 0.3s ease;
         }
@@ -370,34 +396,35 @@
         }
 
         .sdg-number {
-            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-size: 1.8rem;
             font-weight: bold;
             display: block;
             margin-bottom: 0.5rem;
         }
 
         .sdg-item div {
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-size: 0.95rem;
         }
 
-        /* Country flags section */
+        /* Countries Section */
         .countries-section {
             margin: 2rem 0;
         }
 
         .countries-content {
             text-align: center;
-            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            font-size: 1rem;
             line-height: 1.8;
-            padding: 0 1rem;
+            padding: 1rem;
         }
 
-        /* Enhanced Footer */
+        /* Footer */
         footer {
             background: linear-gradient(135deg, #9F4B14, #F28C28);
             color: white;
-            padding: clamp(2rem, 6vw, 3rem) 0 1rem;
+            padding: 2rem 0 1rem;
             text-align: center;
+            width: 100%;
         }
 
         .footer-content {
@@ -405,7 +432,7 @@
         }
 
         .footer-content h3 {
-            font-size: clamp(1.3rem, 4vw, 1.5rem);
+            font-size: 1.5rem;
             margin-bottom: 1rem;
         }
 
@@ -425,8 +452,8 @@
             color: white;
             transition: all 0.3s ease;
             font-size: 1.2rem;
-            min-width: 50px;
-            min-height: 50px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -439,14 +466,14 @@
         }
 
         .footer-content p {
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-size: 1rem;
             margin-bottom: 1rem;
         }
 
-        /* Mobile-specific styles */
-        @media (max-width: 768px) {
+        /* Tablet Styles - 768px and below */
+        @media screen and (max-width: 768px) {
             .mobile-menu-toggle {
-                display: block;
+                display: flex;
             }
 
             .nav-links {
@@ -458,10 +485,9 @@
                 background: linear-gradient(135deg, #F28C28, #E88C2D);
                 flex-direction: column;
                 justify-content: center;
-                align-items: center;
                 gap: 2rem;
                 transition: left 0.3s ease;
-                z-index: 1000;
+                z-index: 999;
             }
 
             .nav-links.active {
@@ -469,34 +495,76 @@
             }
 
             .nav-links a {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
                 padding: 1rem 2rem;
             }
 
-            .hero {
-                min-height: 50vh;
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
             }
 
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
 
             .card-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
             .partner-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
             .sdg-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .event-details {
+                padding: 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
             }
         }
 
-        @media (max-width: 480px) {
+        /* Mobile Styles - 480px and below */
+        @media screen and (max-width: 480px) {
+            html {
+                font-size: 14px;
+            }
+
             .container {
                 padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .hero {
+                min-height: 40vh;
+                padding: 2rem 0;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .stats {
+                padding: 1.5rem 1rem;
             }
 
             .stats-grid {
@@ -504,39 +572,76 @@
                 gap: 1rem;
             }
 
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .stat-label {
+                font-size: 0.85rem;
+            }
+
+            .section {
+                padding: 1.5rem 0;
+                margin: 1.5rem 0;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .card {
+                padding: 1.2rem;
+            }
+
+            .card h3 {
+                font-size: 1.1rem;
+            }
+
             .sdg-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
             .event-details {
                 padding: 1rem;
-                margin: 1rem;
+                margin: 1rem auto;
             }
 
-            .social-links {
-                gap: 0.5rem;
+            .event-details h3 {
+                font-size: 1.1rem;
+            }
+
+            .event-details p {
+                font-size: 0.9rem;
             }
 
             .social-link {
-                padding: 0.8rem;
-                min-width: 45px;
-                min-height: 45px;
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .mobile-menu-toggle {
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
             }
         }
 
-        @media (max-width: 320px) {
+        /* Extra Small Mobile - 360px and below */
+        @media screen and (max-width: 360px) {
             .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .section h2 {
                 font-size: 1.6rem;
             }
-        }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+            .section h2 {
+                font-size: 1.3rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
         }
 
         /* Loading animation */
@@ -545,11 +650,17 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
 
-        /* Accessibility improvements */
+        /* Accessibility */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -558,30 +669,14 @@
             }
         }
 
-        /* High contrast mode */
-        @media (prefers-contrast: high) {
-            .card {
-                border: 2px solid #F28C28;
-            }
+        /* Prevent horizontal scroll */
+        body, html {
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Touch-friendly improvements */
-        @media (hover: none) and (pointer: coarse) {
-            .card:hover,
-            .stat-item:hover,
-            .sdg-item:hover {
-                transform: none;
-            }
-            
-            .social-link:hover {
-                transform: none;
-            }
-        }
-
-        /* Prevent animation during resize */
-        .resize-animation-stopper * {
-            animation: none !important;
-            transition: none !important;
+        * {
+            max-width: 100%;
         }
     </style>
 </head>
@@ -589,7 +684,7 @@
     <header>
         <nav class="container">
             <div class="logo">SecureAsi@</div>
-            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">☰</button>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
             <ul class="nav-links">
                 <li><a href="#overview">Overview</a></li>
                 <li><a href="#activities">Activities</a></li>
@@ -766,8 +861,8 @@
             <div class="footer-content">
                 <h3>Connect With Us</h3>
                 <div class="social-links">
-                    <a href="https://www.facebook.com/secureasia" class="social-link" title="Facebook" aria-label="Visit our Facebook page">📘</a>
-                    <a href="https://myren.net.my/teinsecureasia/" class="social-link" title="Website" aria-label="Visit our website">🌐</a>
+                    <a href="https://www.facebook.com/secureasia" class="social-link" title="Facebook" aria-label="Facebook">📘</a>
+                    <a href="https://myren.net.my/teinsecureasia/" class="social-link" title="Website" aria-label="Website">🌐</a>
                 </div>
                 <p>Building stronger cybersecurity across Asia through collaboration and knowledge sharing</p>
             </div>
@@ -778,32 +873,32 @@
     </footer>
 
     <script>
-        // Enhanced Mobile Menu
+        // Mobile Menu Toggle
         const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         
-        mobileMenuToggle.addEventListener('click', () => {
+        mobileMenuToggle.addEventListener('click', function() {
             navLinks.classList.toggle('active');
-            mobileMenuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+            this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
         });
 
-        // Close mobile menu when clicking on a link
+        // Close menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', function() {
                 navLinks.classList.remove('active');
                 mobileMenuToggle.textContent = '☰';
             });
         });
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
             if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
                 navLinks.classList.remove('active');
                 mobileMenuToggle.textContent = '☰';
             }
         });
 
-        // Smooth scrolling for navigation links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -820,7 +915,7 @@
             });
         });
 
-        // Enhanced Intersection Observer for animations
+        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -834,36 +929,13 @@
             });
         }, observerOptions);
 
-        // Observe all sections and cards
+        // Observe elements
         document.querySelectorAll('.section, .card, .stat-item, .outcome-item, .partner-item, .sdg-item').forEach(el => {
             observer.observe(el);
         });
 
-        // Header scroll effect
-        let lastScrollTop = 0;
-        const header = document.querySelector('header');
-
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                header.style.transform = 'translateY(0)';
-            }
-            
-            lastScrollTop = scrollTop;
-        });
-
-        // Prevent transitions during resize
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            document.body.classList.add('resize-animation-stopper');
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                document.body.classList.remove('resize-animation-stopper');
-            }, 400);
-        });
+        // Prevent zoom on input focus (iOS)
+        document.addEventListener('touchstart', function() {}, {passive: true});
     </script>
 </body>
 </html>
